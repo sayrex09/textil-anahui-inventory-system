@@ -1,6 +1,9 @@
 
 # 📦 Sistema de Inventario para Textil Anahui S.A.C.
 
+![Texto alternativo](/public/assets/img/anahui.png)
+
+
 ## 1. Descripción General
 
 El **Sistema de Inventario de Textil Anahui** es una solución web desarrollada con el objetivo de **optimizar, automatizar y digitalizar los procesos logísticos** del área de Tejeduría en la empresa **Textil Anahui S.A.C.**, ubicada en Lima, Perú. Esta herramienta permite una gestión centralizada y en tiempo real del inventario de telas, materias primas, compras, ventas y trazabilidad de acciones del personal.
