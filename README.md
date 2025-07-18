@@ -1,144 +1,123 @@
-# Punto de Venta para una tienda
 
-## Dependencias
+# 📦 Sistema de Inventario para Textil Anahui S.A.C.
 
--  Se debe tener instalado [XAMPP](https://www.apachefriends.org/es/download.html "XAMPP") (versión **PHP** **8.2** o superior)
+## 1. Descripción General
 
--  Se debe tener instalado [Composer](https://getcomposer.org/download/ "Composer")
+El **Sistema de Inventario de Textil Anahui** es una solución web desarrollada con el objetivo de **optimizar, automatizar y digitalizar los procesos logísticos** del área de Tejeduría en la empresa **Textil Anahui S.A.C.**, ubicada en Lima, Perú. Esta herramienta permite una gestión centralizada y en tiempo real del inventario de telas, materias primas, compras, ventas y trazabilidad de acciones del personal.
 
-  
+---
 
-## Como instalar en Local
+## 2. Beneficios para el Área Logística
 
-1.  Clone  o  descargue  el  repositorio  a  una  carpeta  en  Local
+| Funcionalidad Clave                 | Beneficio Directo                                                 |
+| ----------------------------------- | ----------------------------------------------------------------- |
+| 📊 **Stock en tiempo real**         | Evita quiebres o excesos de inventario.                           |
+| 🔄 **Control de movimientos**       | Trazabilidad completa de entradas y salidas mediante Kardex.      |
+| 🛒 **Optimización de compras**      | Basada en stock mínimo y consumo histórico.                       |
+| 🧾 **Auditoría de acciones (logs)** | Historial detallado de actividades para control y seguridad.      |
+| 🗂️ **Gestión por almacenes**       | Organización eficiente según tipo de producto y ubicación física. |
 
-  
+---
 
-1.  Abra  el  repositorio  en  su  editor  de  código  favorito  (**Visual  Studio  Code**)
+## 3. Funcionalidades Principales
 
-  
+* **🧵 Gestión de Productos Textiles**
+  Registro detallado de telas tejidas (tipo, composición, medidas, presentación).
 
-1.  Ejecute  la  aplicación  **XAMPP**  e  inice  los  módulos  de  **Apache**  y  **MySQL**
+* **📦 Gestión de Compras y Ventas**
+  Módulo para registrar y visualizar operaciones con proveedores y clientes.
 
-  
+* **👥 Gestión de Personal y Roles**
+  Asignación de usuarios por cargo con permisos diferenciados (ej. Tejedor, Supervisor).
 
-1.  Abra  una  nueva  terminal  en  su  editor
+* **📈 Reportes Automatizados**
+  Informes sobre stock, movimientos, ventas por producto o categoría, entre otros.
 
-  
+* **🔐 Seguridad y Control de Acceso**
+  Sistema de autenticación con control de roles y auditoría mediante `activity_logs`.
 
-1.  Compruebe  de  que  tiene  instalado  todas  dependencias  correctamente,  ejecute  los  siguientes  comandos:  **(Ambos  comandos  deberán  ejecutarse  correctamente  -  ejecutar  en  la  terminal)**
+---
+
+## 4. Tecnologías Utilizadas
+
+| Componente          | Tecnología                                  |
+| ------------------- | ------------------------------------------- |
+| **Backend**         | PHP 8.x, Laravel 10.x                       |
+| **Frontend**        | Blade Templates, Tailwind CSS (opcional)    |
+| **Base de Datos**   | MySQL 5.7 o superior                        |
+| **Dependencias**    | Composer                                    |
+| **Procesos**        | Laravel Queues para tareas en segundo plano |
+| **Datos de prueba** | Faker para generación de datos simulados    |
+
+---
+
+## 5. Requisitos del Sistema
+
+* PHP 8.1 o superior
+* MySQL 5.7 o superior
+* Composer
+* Node.js (para estilos y scripts opcionales)
+* Git (clonación del repositorio)
+
+---
+
+## 6. Instalación y Configuración
 
 ```bash
+# Clonar el repositorio
+git clone https://github.com/your-username/textil-anahui-inventory.git
+cd textil-anahui-inventory
 
-php  -v
-
-```
-
-```bash
-
-composer  -v
-
-```
-
-  
-
-1.  Ahora  ejecute  los  comandos  para  la  configuración  del  proyecto  (**ejecutar  en  la  terminal**):
-
-  
-
--  Este comando nos va a instalar todas la dependencias de composer
-
-```bash
-
+# Instalar dependencias
 composer install
 
-```
-
--  En el directorio raíz encontrará el arhivo **.env.example**, dupliquelo, al archivo duplicado cambiar de nombre como **.env**, este archivo se debe modificar según las configuraciones de nuestro proyecto. Ahí se muestran como debería quedar
-
-```bash
-
-DB_CONNECTION=mysql
-
-DB_HOST=127.0.0.1
-
-DB_PORT=3306
-
-DB_DATABASE=dbsistemaventas
-
-DB_USERNAME=root
-
-DB_PASSWORD=
-
-```
-
--  Ejecutar el comando para crear la Key de seguridad
-
-```bash
-
+# Configurar entorno
+cp .env.example .env
+# Editar las variables de entorno en .env (DB, APP_NAME, etc.)
 php artisan key:generate
 
-```
+# Migrar y poblar la base de datos
+php artisan migrate --seed
 
--  Ingrese al administrador de [PHP MyAdmin](http://localhost/phpmyadmin/) y cree una nueva base de datos, el nombre es opcional, pero por defecto nombrarla **dbsistemaventas**
-
-  
-
--  Correr la migraciones del proyecto
-
-```bash
-
-php artisan migrate
-
-```
-
--  Ejecute los seeders, esto creará un usuario administrador, puede revisar las credenciales en el archivo (**database/seeders/UserSeeder**)
-
-```bash
-
-php artisan db:seed
-
-```
-
--  Corra comando para crear el enlace simbólico
-
-```bash
-
+# Crear enlace simbólico a almacenamiento
 php artisan storage:link
 
-```
--  Si quiere ejecutar los trabajos (modo de desarrollo)
-
-```bash
-
-php artisan queue:listen
-
-```
-
-  -  Ejecute el proyecto (en otra terminal)
-
-```bash
-
+# Iniciar servidor local
 php artisan serve
-
 ```
 
-## Notas
+---
 
--  Obtenga más información sobre este proyecto [aquí](https://universityproyectx.blogspot.com/2022/10/sistema-de-ventas-web-minersa-srl.html).
+## 7. Estructura de la Base de Datos (Tablas Clave)
 
-- [FAQ sobre el proyecto](https://universityproyectx.blogspot.com/2023/06/faq-sobre-el-sistema-de-ventas-de.html)
+* **Productos y Categorías**: `productos`, `categorias`, `presentaciones`
+* **Inventario y Movimientos**: `inventario`, `kardex`, `movimientos`
+* **Compras/Ventas**: `compras`, `ventas`, `producto_venta`
+* **Usuarios y Roles**: `users`, `roles`, `permissions`, `empleados`
+* **Auditoría**: `activity_logs` (registro de acciones en el sistema)
 
-  
+---
 
-## Licencia
+## 8. Guía de Uso
 
--  Este proyecto está licenciado bajo la Licencia MIT. Para más información, consulta el archivo [LICENSE](LICENSE).
+1. **Inicio de sesión** con credenciales de administrador o usuario asignado.
+2. **Administrar inventario**: Agregar productos, registrar existencias por almacén.
+3. **Procesar compras o ventas**: Registrar operaciones con insumos o telas terminadas.
+4. **Consultar reportes** por periodo, producto, tipo de operación o almacén.
+5. **Gestionar usuarios y roles** con diferentes permisos según responsabilidades.
 
--  Obtenga más información sobre esta licencia [MIT license](https://opensource.org/licenses/MIT).
+---
 
-  
+## 9. Licencia
 
-------------
+Este software se distribuye bajo la **Licencia MIT**, permitiendo su uso, modificación y distribución bajo los términos definidos en dicha licencia.
 
-![Img](https://github.com/SakNoelCode/Imagenes_Proyectos/blob/master/sistema-ventas-captura.png)
+---
+
+## 10. Contacto
+
+**Desarrollador Principal:**
+Cristhian Paul Calloquispe Cusi
+📧 [paulcalloquispe2700@gmail.com](mailto:paulcalloquispe2700@gmail.com)
+📍 Lima, Perú
+# textil-anahui-inventory-system
