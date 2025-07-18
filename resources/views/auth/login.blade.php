@@ -1,82 +1,119 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
+<html lang="es">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="Inicio de sesión del sistema" />
-    <meta name="author" content="SakCode" />
-    <title>Sistema de ventas - Login</title>
-    <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
-    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Ventas - Login</title>
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            background: url('{{ asset('assets/img/inventario.png') }}') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .auth-card {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 1rem;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .auth-logo {
+            margin-bottom: 1rem;
+        }
+
+        .auth-logo img {
+            max-width: 180px;
+        }
+
+        .auth-msg {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #black;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 0.2rem rgba(30, 58, 138, 0.25);
+            border-color: #1e3a8a;
+        }
+
+        .auth-button {
+            background-color: #1e3a8a;
+            color: white;
+            width: 100%;
+            border: none;
+            padding: 0.75rem;
+            font-weight: bold;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .auth-button:hover {
+            background-color: #3b82f6;
+        }
+
+        .help-block {
+            color: red;
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 576px) {
+            .auth-card {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+
+            .auth-msg {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
 </head>
+<body>
 
-<body class="bg-primary">
-    <div id="layoutAuthentication">
-        <div id="layoutAuthentication_content">
-            <main>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-5">
-                            <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                <div class="card-header">
-                                    <h3 class="text-center font-weight-light my-4">Acceso al sistema</h3>
-                                </div>
-                                <div class="card-body">
-                                    @if ($errors->any())
-                                    @foreach ($errors->all() as $item)
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        {{$item}}
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                    @endforeach
-                                    @endif
-                                    <form action="{{route('login.login')}}" method="post">
-                                        @csrf
-                                        <div class="form-floating mb-3">
-                                            <input autofocus autocomplete="off" value="invitado@gmail.com" class="form-control" name="email" id="inputEmail" type="email" placeholder="name@example.com" />
-                                            <label for="inputEmail">Correo eléctronico</label>
-                                        </div>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" name="password" value="12345678" id="inputPassword" type="password" placeholder="Password" />
-                                            <label for="inputPassword">Contraseña</label>
-                                        </div>
-                                        <!--div class="form-check mb-3">
-                                                <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="" />
-                                                <label class="form-check-label" for="inputRememberPassword">Remember Password</label>
-                                            </div--->
-                                        <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                            <!--a class="small" href="password.html">Forgot Password?</a-->
-                                            <button class="btn btn-primary" type="submit"><a>Iniciar sesión</a></button>
-                                        </div>
-                                    </form>
-                                </div>
-                                <!---div class="card-footer text-center py-3">
-                                        <div class="small"><a href="register.html">Need an account? Sign up!</a></div>
-                                    </div---->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </main>
+    <div class="auth-card">
+        <div class="auth-logo">
+            <img src="{{ url('assets/img/logo.png') }}" alt="Logo del sistema">
         </div>
-        <div id="layoutAuthentication_footer">
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Your Website 2022</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-        </div>
+        <div class="auth-msg">Iniciar sesión</div>
+        <form method="POST" action="{{ route('login.login') }}">
+            @csrf
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Correo electrónico</label>
+                <input type="email" name="email" class="form-control" id="email" placeholder="tucorreo@dominio.com" required autofocus>
+                @error('email')
+                    <div class="help-block">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" name="password" class="form-control" id="password" placeholder="********" required>
+                @error('password')
+                    <div class="help-block">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="form-check mb-3">
+                <input type="checkbox" class="form-check-input" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                <label class="form-check-label" for="remember">Recordar sesión</label>
+            </div>
+
+            <button type="submit" class="auth-button">Ingresar</button>
+        </form>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-</body>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

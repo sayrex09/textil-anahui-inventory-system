@@ -130,9 +130,6 @@
 
             </div>
         </div>
-        <div class="sb-sidenav-footer">
-            <div class="small">Bienvenido:</div>
-            {{ auth()->user()->name }}
-        </div>
+
     </nav>
 </div>

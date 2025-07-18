@@ -14,12 +14,12 @@ class EmpresaSeeder extends Seeder
     public function run(): void
     {
         Empresa::insert([
-            'nombre' => 'SK SAC',
-            'propietario' => 'Sak Code',
-            'ruc' => '1089674538',
-            'porcentaje_impuesto' => '15',
+            'nombre' => 'Textil Anahui SAC',
+            'propietario' => 'Textil Anahui SACa',
+            'ruc' => '20338996706',
+            'porcentaje_impuesto' => '18',
             'abreviatura_impuesto' => 'IGV',
-            'direccion' => 'Av. Los Pinos n°789',
+            'direccion' => 'Av. Aviacion Nro. 476 Int. 308',
             'moneda_id' => 1
         ]);
     }
